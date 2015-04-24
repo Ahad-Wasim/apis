@@ -12,6 +12,9 @@
 			width: 300px;
 		}
 	</style>
+	
+
+
 	<script>
 		var key = '403d5274ed5eb1c0131d74485aaa30dd';
 		var base_url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + key + "&format=json&nojsoncallback=1";
@@ -19,18 +22,31 @@
 		$(document).ready(function () {
 
 			var displayPhotos = function (photos) {
+				
+
+
 				if(photos.length > 0){
 					$('#photo-list').html('');
 				}else{
 					$('#photo-list').html('No Photos Found');
 				}
+
+
 				for (var index in photos) {
 					var photoObj = photos[index];
-					var url = 'https://farm' + photoObj.farm + '.staticflickr.com/' + photoObj.server + '/' + photoObj.id + '_' + photoObj.secret + '.jpg'
+					var url = 'https://farm' + photoObj.farm + '.staticflickr.com/' + photoObj.server + '/' + photoObj.id + '_' + photoObj.secret + '.jpg';
+					
+
 					var img = $('<img/>').attr('src', url).width(250);
 					$('#photo-list').append(img);
 				}
-			}
+			};
+
+
+
+			
+
+			
 
 			$('body').on('click', '#search-btn', function () {
 				var val = $('#search').val();
@@ -47,6 +63,8 @@
 						photos = response.photos.photo;
 						displayPhotos(photos);
 					},
+					
+
 					error: function (response) {
 						console.error(response);
 					}
@@ -57,7 +75,15 @@
 		});
 	</script>
 
+
+
+
+
 </head>
+
+
+
+
 
 <body>
 	<div id="search-form">
